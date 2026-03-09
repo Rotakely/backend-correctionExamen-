@@ -190,6 +190,9 @@ public class NoteService {
             case ">": return sommeDifferences.compareTo(diff) > 0;
             case "<": return sommeDifferences.compareTo(diff) < 0;
             case "=": return sommeDifferences.compareTo(diff) == 0;
+            case ">=": return sommeDifferences.compareTo(diff) >= 0;
+            case "<=": return sommeDifferences.compareTo(diff) <= 0;
+
             default: throw new RuntimeException("Opérateur inconnu: " + operateur);
         }
     }
