@@ -85,22 +85,26 @@ SET session_replication_role = 'origin';
 -- ===================================
 
 -- Matières
-INSERT INTO Matiere (nom, coeff) VALUES ('Mathematiques', 3);  -- id=1
+INSERT INTO Matiere (nom, coeff) VALUES ('java', 1);  -- id=1
+INSERT INTO Matiere (nom, coeff) VALUES ('php', 1);  -- id=1
+
 
 -- Étudiants
-INSERT INTO Etudiant (nom) VALUES ('Jean');     -- id=1
+INSERT INTO Etudiant (nom) VALUES ('candidat1');     -- id=1
+INSERT INTO Etudiant (nom) VALUES ('candidat2');  
 
 -- Correcteurs
-INSERT INTO Correcteur (nom) VALUES ('M. Dupont');   -- id=1
-INSERT INTO Correcteur (nom) VALUES ('Mme Martin');  -- id=2
-INSERT INTO Correcteur (nom) VALUES ('M. Rojo');     -- id=3
+INSERT INTO Correcteur (nom) VALUES ('correcteur1');   -- id=1
+INSERT INTO Correcteur (nom) VALUES ('correcteur2');  -- id=2
+INSERT INTO Correcteur (nom) VALUES ('correcteur3');     -- id=3
 
 -- Opérateurs
 INSERT INTO Operateur (operateur) VALUES ('<');   -- id=1
-INSERT INTO Operateur (operateur) VALUES ('>');   -- id=2
-INSERT INTO Operateur (operateur) VALUES ('=');   -- id=3
-INSERT INTO Operateur (operateur) VALUES ('>=');  -- id=4
 INSERT INTO Operateur (operateur) VALUES ('<=');  -- id=5
+INSERT INTO Operateur (operateur) VALUES ('>');   -- id=2
+INSERT INTO Operateur (operateur) VALUES ('>=');  -- id=4
+INSERT INTO Operateur (operateur) VALUES ('=');   -- id=3
+
 INSERT INTO Operateur (operateur) VALUES ('==');  -- id=6
 
 -- Résolutions
@@ -113,45 +117,43 @@ INSERT INTO Resolution (resolution) VALUES ('SOMME');    -- id=4
 -- NOTES (Exemples)
 -- ===================================
 
--- EXEMPLE 1: Notes identiques
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 12.5, 1, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 12.5, 2, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 12.5, 3, 1);
-
--- EXEMPLE 2: Petites différences
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 10.0, 1, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 11.0, 2, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 11.5, 1, 1);
-
--- EXEMPLE 3: Grandes différences
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 5.0, 1, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 12.0, 2, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 8.0, 1, 1);
-
--- EXEMPLE 4: Différence exacte
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 10.0, 1, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 13.0, 2, 1);
 
 -- ===================================
 -- PARAMÈTRES (Exemple pour chaque opérateur)
 -- ===================================
 
--- '>' : différence supérieure
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 5.00, 2, 1);
+INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 3.00, 1, 1);
 
 -- '<' : différence inférieure
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 2.00, 1, 2);
+INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 3.00, 4, 3);
 
 -- '=' : différence exacte
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 3.00, 3, 3);
+INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (2, 2.00, 2, 2);
 
 -- '>=' : différence supérieure ou égale
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 3.00, 4, 1);
+INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (2, 2.00, 3, 1);
 
--- '<=' : différence inférieure ou égale
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 2.00, 5, 3);
 
--- '==' : différence exactement égale à 0
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 0.00, 6, 3);
+
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 12, 1, 1);
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 11, 2, 1);
+
+
+-- EXEMPLE 2: Petites différences
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 7.0, 1, 1);
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 11.0, 2, 1);
+
+
+-- EXEMPLE 3: Grandes différences
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 13.0, 1, 2);
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 10.0, 2, 2);
+
+
+-- EXEMPLE 4: Différence exacte
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 14.0, 1, 2);
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 16.0, 2, 2);
+
+
+
 
 
