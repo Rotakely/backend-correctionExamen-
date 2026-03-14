@@ -14,7 +14,7 @@ public class Operateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(name = "operateur", nullable = false, length = 1)
+    @Column(name = "operateur", nullable = false)  // Pas de length !
     private String operateur;
 
     // Constructeurs
