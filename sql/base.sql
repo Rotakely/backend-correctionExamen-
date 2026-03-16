@@ -1,9 +1,9 @@
 -- ===================================
 -- CRÉATION DE LA BASE
 -- ===================================
-DROP DATABASE IF EXISTS correcteur_etudiant;
-CREATE DATABASE correcteur_etudiant;
-\c correcteur_etudiant;
+DROP DATABASE IF EXISTS correcteur_etudiant_v2;
+CREATE DATABASE correcteur_etudiant_v2;
+\c correcteur_etudiant_v2;
 
 -- ===================================
 -- TABLES
@@ -25,16 +25,10 @@ CREATE TABLE Correcteur (
     nom VARCHAR(50) NOT NULL
 );
 
--- Supprimer l'ancien type et table si existants
-DROP TABLE IF EXISTS Operateur CASCADE;
-DROP TYPE IF EXISTS type_operateur;
-
--- Type ENUM pour opérateurs
-CREATE TYPE type_operateur AS ENUM ('<', '>', '<=', '>=', '==');
-
+-- Table Operateur simple (sans type ENUM)
 CREATE TABLE Operateur (
     id SERIAL PRIMARY KEY,
-    operateur type_operateur NOT NULL
+    operateur VARCHAR(10) NOT NULL UNIQUE  -- VARCHAR simple au lieu du type ENUM
 );
 
 CREATE TABLE Resolution (
@@ -85,75 +79,97 @@ SET session_replication_role = 'origin';
 -- ===================================
 
 -- Matières
-INSERT INTO Matiere (nom, coeff) VALUES ('java', 1);  -- id=1
-INSERT INTO Matiere (nom, coeff) VALUES ('php', 1);  -- id=1
-
+INSERT INTO Matiere (nom, coeff) VALUES ('java', 1);
+INSERT INTO Matiere (nom, coeff) VALUES ('php', 1);
 
 -- Étudiants
-INSERT INTO Etudiant (nom) VALUES ('candidat1');     -- id=1
-INSERT INTO Etudiant (nom) VALUES ('candidat2');  
+INSERT INTO Etudiant (nom) VALUES ('candidat1');
+INSERT INTO Etudiant (nom) VALUES ('candidat2');
 
 -- Correcteurs
-INSERT INTO Correcteur (nom) VALUES ('correcteur1');   -- id=1
-INSERT INTO Correcteur (nom) VALUES ('correcteur2');  -- id=2
-INSERT INTO Correcteur (nom) VALUES ('correcteur3');     -- id=3
+INSERT INTO Correcteur (nom) VALUES ('correcteur1');
+INSERT INTO Correcteur (nom) VALUES ('correcteur2');
+INSERT INTO Correcteur (nom) VALUES ('correcteur3');
 
--- Opérateurs
-INSERT INTO Operateur (operateur) VALUES ('<');   -- id=1
-INSERT INTO Operateur (operateur) VALUES ('<=');  -- id=5
-INSERT INTO Operateur (operateur) VALUES ('>');   -- id=2
-INSERT INTO Operateur (operateur) VALUES ('>=');  -- id=4
-INSERT INTO Operateur (operateur) VALUES ('=');   -- id=3
-
-INSERT INTO Operateur (operateur) VALUES ('==');  -- id=6
+-- Opérateurs (maintenant en VARCHAR simple)
+INSERT INTO Operateur (operateur) VALUES ('<');
+INSERT INTO Operateur (operateur) VALUES ('<=');
+INSERT INTO Operateur (operateur) VALUES ('>');
+INSERT INTO Operateur (operateur) VALUES ('>=');
+INSERT INTO Operateur (operateur) VALUES ('=');
+INSERT INTO Operateur (operateur) VALUES ('==');
 
 -- Résolutions
-INSERT INTO Resolution (resolution) VALUES ('MAX');      -- id=1
-INSERT INTO Resolution (resolution) VALUES ('MIN');      -- id=2
-INSERT INTO Resolution (resolution) VALUES ('MOYENNE');  -- id=3
-INSERT INTO Resolution (resolution) VALUES ('SOMME');    -- id=4
+INSERT INTO Resolution (resolution) VALUES ('MAX');
+INSERT INTO Resolution (resolution) VALUES ('MIN');
+INSERT INTO Resolution (resolution) VALUES ('MOYENNE');
+INSERT INTO Resolution (resolution) VALUES ('SOMME');
 
--- ===================================
--- NOTES (Exemples)
--- ===================================
+-- -- ===================================
+-- -- NOTES (Exemples)
+-- -- ===================================
+-- INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 12, 1, 1);
+-- INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 11, 2, 1);
+-- INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 7.0, 1, 1);
+-- INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 11.0, 2, 1);
+-- INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 13.0, 1, 2);
+-- INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 10.0, 2, 2);
+-- INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 14.0, 1, 2);
+-- INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 16.0, 2, 2);
 
-
--- ===================================
--- PARAMÈTRES (Exemple pour chaque opérateur)
--- ===================================
-
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 3.00, 1, 1);
-
--- '<' : différence inférieure
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 3.00, 4, 3);
-
--- '=' : différence exacte
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (2, 2.00, 2, 2);
-
--- '>=' : différence supérieure ou égale
-INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (2, 2.00, 3, 1);
-
-
-
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 12, 1, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 11, 2, 1);
-
-
--- EXEMPLE 2: Petites différences
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 7.0, 1, 1);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 11.0, 2, 1);
-
-
--- EXEMPLE 3: Grandes différences
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 13.0, 1, 2);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (1, 10.0, 2, 2);
-
-
--- EXEMPLE 4: Différence exacte
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 14.0, 1, 2);
-INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES (2, 16.0, 2, 2);
+-- -- ===================================
+-- -- PARAMÈTRES
+-- -- ===================================
+-- INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 3.00, 1, 1);
+-- INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (1, 3.00, 4, 3);
+-- INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (2, 2.00, 2, 2);
+-- INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES (2, 2.00, 3, 1);
 
 
 
+-- 2. PARAMÈTRES (3 seulement)
+INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES 
+(1, 2.00, 1, 1),  -- diff=2 → MAX
+(1, 4.00, 1, 2),  -- diff=4 → MIN
+(1, 6.00, 1, 3);  -- diff=6 → MOYENNE
 
 
+INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES 
+(1, 2.00, 1, 1),  
+(1, 4.00, 1, 2),  
+(1, 6.00, 1, 3);  
+
+
+-- ============================================
+-- CAS 1: différence = 1.00 (proche de 2.00)
+-- ============================================
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES 
+(1, 10.0, 1, 1),  -- candidat1
+(1, 11.0, 2, 1);  -- note 10 et 11 → différence = 1
+-- Attendu: plus proche de 2.00 → MAX
+
+-- ============================================
+-- CAS 2: différence = 3.00 (entre 2 et 4)
+-- ============================================
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES 
+(1, 12.0, 1, 1),  -- candidat1
+(1, 15.0, 2, 1);  -- note 12 et 15 → différence = 3
+-- Attendu: plus proche de 4.00 (distance 1) ou 2.00 (distance 1) ?
+-- Réponse: ÉGALITÉ entre 2 et 4 → on prend le PLUS PETIT = 2.00 → MAX
+
+-- ============================================
+-- CAS 3: différence = 5.00 (entre 4 et 6)
+-- ============================================
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES 
+(1, 13.0, 1, 2),  -- candidat2
+(1, 18.0, 2, 2);  -- note 13 et 18 → différence = 5
+-- Attendu: plus proche de 4.00 (distance 1) ou 6.00 (distance 1) ?
+-- Réponse: ÉGALITÉ entre 4 et 6 → on prend le PLUS PETIT = 4.00 → MIN
+
+-- ============================================
+-- CAS 4: différence = 6.00 (exact)
+-- ============================================
+INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES 
+(1, 14.0, 1, 2),  -- candidat2
+(1, 20.0, 2, 2);  -- note 14 et 20 → différence = 6
+-- Attendu: correspond exact à 6.00 → MOYENNE
