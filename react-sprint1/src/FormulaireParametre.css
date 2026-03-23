@@ -1,0 +1,380 @@
+/* FormulaireParametre.css */
+
+/* Conteneur principal */
+.param-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 35px;
+    background: linear-gradient(145deg, #ffffff 0%, #faf0f5 100%);
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(200, 150, 180, 0.25);
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    position: relative;
+    overflow: hidden;
+    animation: douceEntree 0.7s ease-out;
+}
+
+/* Décoration de fond */
+.param-container::before {
+    content: "⚙️✨";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 100px;
+    color: rgba(200, 150, 180, 0.1);
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+.param-container::after {
+    content: "✨⚙️";
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    font-size: 100px;
+    color: rgba(200, 150, 180, 0.1);
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+/* Titre */
+.param-title {
+    color: #b85e7a;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.param-title span {
+    display: inline-block;
+    animation: douxBalance 4s ease-in-out infinite;
+}
+
+@keyframes douxBalance {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+/* Message d'erreur */
+.param-error {
+    background: #ffe8ec;
+    color: #c44f6c;
+    padding: 15px 20px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    border-left: 5px solid #ff8da1;
+    font-size: 15px;
+    box-shadow: 0 5px 15px rgba(255, 140, 160, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.param-error::before {
+    content: "⚠️";
+    font-size: 20px;
+}
+
+/* Message de succès */
+.param-success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 25px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    border: 2px solid #a5d6a7;
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.2);
+    position: relative;
+    z-index: 2;
+    animation: apparitionSucces 0.5s ease-out;
+}
+
+@keyframes apparitionSucces {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.param-success h3 {
+    color: #2e7d32;
+    font-size: 22px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.param-success p {
+    margin: 8px 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.param-success strong {
+    color: #1b5e20;
+    min-width: 100px;
+}
+
+/* Formulaire */
+.param-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Groupe de champs */
+.param-group {
+    margin-bottom: 5px;
+}
+
+/* Labels */
+.param-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #a65e73;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+/* Selects et inputs */
+.param-select,
+.param-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #ffd9e2;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: #5a3f44;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.param-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b85e7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 16px;
+}
+
+.param-select:focus,
+.param-input:focus {
+    border-color: #ff9eb5;
+    box-shadow: 0 0 0 4px rgba(255, 158, 181, 0.25);
+    transform: scale(1.02);
+}
+
+.param-select:hover,
+.param-input:hover {
+    border-color: #ff85a3;
+    background-color: #fffafc;
+}
+
+.param-input::placeholder {
+    color: #dab0b9;
+    font-style: italic;
+}
+
+/* Bouton */
+.param-button {
+    background: linear-gradient(135deg, #e0b0c0 0%, #d69eb0 100%);
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 25px rgba(180, 130, 150, 0.4);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.param-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(160, 110, 130, 0.5);
+    background: linear-gradient(135deg, #d69eb0 0%, #c68ba0 100%);
+}
+
+.param-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.param-button:disabled {
+    background: linear-gradient(135deg, #f0d0d5 0%, #e8c0c5 100%);
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+/* Animation du bouton */
+.param-button::before {
+    content: "⚙️";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.param-button:hover::before {
+    opacity: 1;
+}
+
+.param-button::after {
+    content: "✨";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.param-button:hover::after {
+    opacity: 1;
+}
+
+/* Loading spinner */
+.param-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Message de chargement des listes */
+.param-loading-lists {
+    text-align: center;
+    padding: 60px;
+    color: #b85e7a;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.param-loading-lists::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 4px solid #ffe2e8;
+    border-top-color: #d69eb0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Petit texte d'aide */
+.param-helper {
+    font-size: 13px;
+    color: #d9a7b3;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+/* Animation d'apparition */
+@keyframes douceEntree {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .param-container {
+        margin: 20px;
+        padding: 25px;
+    }
+    
+    .param-title {
+        font-size: 24px;
+        flex-wrap: wrap;
+    }
+    
+    .param-button {
+        padding: 15px 25px;
+        font-size: 16px;
+    }
+    
+    .param-success p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .param-success strong {
+        min-width: auto;
+    }
+}
+
+/* Pétales décoratifs */
+.param-petale {
+    position: fixed;
+    pointer-events: none;
+    font-size: 20px;
+    animation: flotte 8s linear infinite;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+@keyframes flotte {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+    }
+    20% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(180deg);
+    }
+}

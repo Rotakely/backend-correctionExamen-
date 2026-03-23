@@ -1,0 +1,195 @@
+/* Navigation.css - Version transparente */
+
+.navigation {
+    background: transparent;  /* Fond totalement transparent */
+    padding: 20px 0 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    border-bottom: 2px solid rgba(255, 182, 193, 0.5); /* Fine ligne rose */
+    backdrop-filter: blur(0); /* Pas de flou */
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Logo */
+.nav-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #b85e7a;  /* Rose foncé pour le texte */
+    font-size: 24px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo-link:hover {
+    transform: scale(1.05);
+}
+
+.nav-logo-icon {
+    font-size: 32px;
+    animation: douxBalance 3s ease-in-out infinite;
+}
+
+@keyframes douxBalance {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+.nav-logo-text {
+    background: rgba(255, 182, 193, 0.2);  /* Fond rose très léger */
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 18px;
+    color: #b85e7a;
+}
+
+/* Menu */
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Sections */
+.nav-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: transparent;  /* Fond transparent */
+    padding: 8px 0;
+}
+
+.nav-section-title {
+    color: #b85e7a;
+    font-weight: 600;
+    font-size: 14px;
+    padding-right: 10px;
+    border-right: 2px solid rgba(255, 182, 193, 0.5);  /* Ligne rose */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Liens */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #b85e7a;  /* Rose foncé */
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    background: transparent;  /* Fond transparent */
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 182, 193, 0.2);  /* Cercle rose très léger au survol */
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.nav-link:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    color: #ff85a3;  /* Rose plus clair au survol */
+}
+
+.nav-link.active {
+    background: rgba(255, 182, 193, 0.15);  /* Fond rose très léger pour l'actif */
+    color: #b85e7a;
+    font-weight: 600;
+}
+
+.nav-link.active .nav-icon {
+    transform: scale(1.1);
+}
+
+.nav-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-label {
+    position: relative;
+    z-index: 1;
+    font-size: 14px;
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+    
+    .nav-section {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .nav-section-title {
+        width: 100%;
+        text-align: center;
+        border-right: none;
+        border-bottom: 2px solid rgba(255, 182, 193, 0.5);
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .nav-link {
+        flex: 1;
+        justify-content: center;
+        min-width: 80px;
+    }
+}
+
+/* Animation d'apparition */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.navigation {
+    animation: slideDown 0.5s ease-out;
+}
