@@ -1,0 +1,233 @@
+/* MijeryNoteFinale.css */
+
+/* Style général de la page */
+.mijery-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe4e1 100%);
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* Titre principal */
+.mijery-title {
+    color: #d47b8c;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(255, 200, 210, 0.5);
+    position: relative;
+}
+
+.mijery-title::after {
+    content: "🌸";
+    font-size: 24px;
+    margin-left: 10px;
+    opacity: 0.7;
+}
+
+.mijery-title::before {
+    content: "🌸";
+    font-size: 24px;
+    margin-right: 10px;
+    opacity: 0.7;
+}
+
+/* Message d'erreur */
+.mijery-error {
+    background-color: #ffe6e6;
+    color: #c44f6c;
+    padding: 12px 18px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid #ff8da1;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(255, 140, 160, 0.2);
+}
+
+/* Formulaire */
+.mijery-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Groupe de champs */
+.mijery-form-group {
+    margin-bottom: 5px;
+}
+
+/* Labels */
+.mijery-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #b86b7c;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+/* Inputs */
+.mijery-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #ffd9e2;
+    border-radius: 50px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: #5a3f44;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.mijery-input:focus {
+    border-color: #ffb3c6;
+    box-shadow: 0 0 0 4px rgba(255, 179, 198, 0.3);
+    transform: scale(1.02);
+}
+
+.mijery-input::placeholder {
+    color: #dab0b9;
+    font-style: italic;
+}
+
+.mijery-input:hover {
+    border-color: #ffa5b9;
+    background-color: #fffafa;
+}
+
+/* Bouton */
+.mijery-button {
+    background: linear-gradient(135deg, #ffb6c1 0%, #ff9eb5 100%);
+    color: white;
+    border: none;
+    padding: 16px 25px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(255, 150, 170, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.mijery-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 130, 150, 0.5);
+    background: linear-gradient(135deg, #ffa5b9 0%, #ff8da1 100%);
+}
+
+.mijery-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.mijery-button:disabled {
+    background: linear-gradient(135deg, #f0d0d5 0%, #e8c0c5 100%);
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+/* Animation du bouton */
+.mijery-button::before {
+    content: "✨";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.mijery-button:hover::before {
+    opacity: 1;
+}
+
+.mijery-button::after {
+    content: "✨";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.mijery-button:hover::after {
+    opacity: 1;
+}
+
+/* Loading state */
+.mijery-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Petite touche féminine - décoration */
+.mijery-decoration {
+    text-align: center;
+    margin-top: 20px;
+    color: #d9a7b3;
+    font-size: 14px;
+}
+
+.mijery-decoration span {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .mijery-container {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    .mijery-title {
+        font-size: 24px;
+    }
+    
+    .mijery-title::before,
+    .mijery-title::after {
+        font-size: 18px;
+    }
+}
+
+/* Animation d'apparition */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mijery-container {
+    animation: fadeInUp 0.6s ease-out;
+}

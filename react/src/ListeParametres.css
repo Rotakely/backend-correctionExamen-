@@ -1,0 +1,373 @@
+/* ListeParametres.css */
+
+/* Conteneur principal */
+.listeparam-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #ffffff 0%, #faf0f5 100%);
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(200, 150, 180, 0.25);
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    position: relative;
+    overflow: hidden;
+    animation: douceEntree 0.7s ease-out;
+}
+
+/* Décoration de fond */
+.listeparam-container::before {
+    content: "⚙️⚙️⚙️";
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    font-size: 120px;
+    color: rgba(200, 150, 180, 0.1);
+    transform: rotate(20deg);
+    pointer-events: none;
+}
+
+.listeparam-container::after {
+    content: "✨✨✨";
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    font-size: 120px;
+    color: rgba(200, 150, 180, 0.1);
+    transform: rotate(-20deg);
+    pointer-events: none;
+}
+
+/* Titre */
+.listeparam-title {
+    color: #b85e7a;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.listeparam-title span {
+    display: inline-block;
+    animation: douxBalance 4s ease-in-out infinite;
+}
+
+@keyframes douxBalance {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+/* Bouton d'ajout */
+.listeparam-add-button {
+    display: inline-block;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.listeparam-add-button button {
+    background: linear-gradient(135deg, #e0b0c0 0%, #d69eb0 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(180, 130, 150, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid transparent;
+}
+
+.listeparam-add-button button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(160, 110, 130, 0.5);
+    background: linear-gradient(135deg, #d69eb0 0%, #c68ba0 100%);
+}
+
+.listeparam-add-button button:active {
+    transform: translateY(0);
+}
+
+/* Message de chargement */
+.listeparam-loading {
+    text-align: center;
+    padding: 60px;
+    color: #b85e7a;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.listeparam-loading::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 4px solid #ffe2e8;
+    border-top-color: #d69eb0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Message d'erreur */
+.listeparam-error {
+    background: #ffe8ec;
+    color: #c44f6c;
+    padding: 15px 20px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    border-left: 5px solid #ff8da1;
+    font-size: 15px;
+    box-shadow: 0 5px 15px rgba(255, 140, 160, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.listeparam-error::before {
+    content: "⚠️";
+    font-size: 20px;
+}
+
+/* Conteneur du tableau */
+.listeparam-table-container {
+    overflow-x: auto;
+    border-radius: 30px;
+    background: white;
+    padding: 5px;
+    box-shadow: 0 10px 30px rgba(200, 150, 170, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+/* Tableau */
+.listeparam-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 30px;
+    overflow: hidden;
+    font-size: 15px;
+}
+
+/* En-tête du tableau */
+.listeparam-thead {
+    background: linear-gradient(135deg, #e0b0c0 0%, #d69eb0 100%);
+    color: white;
+}
+
+.listeparam-thead th {
+    padding: 18px 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: left;
+    position: relative;
+}
+
+.listeparam-thead th:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Corps du tableau */
+.listeparam-tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #ffd9e2;
+}
+
+.listeparam-tbody tr:hover {
+    background-color: #fdf5f8;
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px rgba(200, 140, 160, 0.15);
+}
+
+.listeparam-tbody td {
+    padding: 15px;
+    color: #5a3f44;
+}
+
+/* Cellules spécifiques */
+.listeparam-tbody td:first-child {
+    font-weight: 600;
+    color: #b85e7a;
+}
+
+.listeparam-tbody td:last-child {
+    white-space: nowrap;
+}
+
+/* Badge pour la différence */
+.listeparam-diff-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f3e0e8 0%, #e8d0dc 100%);
+    color: #b85e7a;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid #d6b0c0;
+}
+
+/* Boutons d'action */
+.listeparam-action-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 8px;
+    text-decoration: none;
+}
+
+.listeparam-action-button.modifier {
+    background: linear-gradient(135deg, #e8d0e0 0%, #d8b8d0 100%);
+    color: #8a5a7a;
+    border: 1px solid #c9a0b8;
+}
+
+.listeparam-action-button.modifier:hover {
+    background: linear-gradient(135deg, #d8b8d0 0%, #c8a0c0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(170, 100, 140, 0.2);
+}
+
+.listeparam-action-button.supprimer {
+    background: linear-gradient(135deg, #ffe0e5 0%, #fcc8d5 100%);
+    color: #b85e7a;
+    border: 1px solid #f5b0c0;
+}
+
+.listeparam-action-button.supprimer:hover {
+    background: linear-gradient(135deg, #fcc8d5 0%, #f8b0c0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(200, 80, 110, 0.2);
+}
+
+/* Message quand aucun paramètre */
+.listeparam-empty {
+    text-align: center;
+    padding: 60px;
+    color: #b85e7a;
+    font-size: 18px;
+    background: #fdf5f8;
+    border-radius: 30px;
+    border: 2px dashed #d6b0c0;
+}
+
+.listeparam-empty::before {
+    content: "⚙️";
+    display: block;
+    font-size: 50px;
+    margin-bottom: 20px;
+    opacity: 0.7;
+}
+
+/* Animation d'apparition */
+@keyframes douceEntree {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .listeparam-container {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    .listeparam-title {
+        font-size: 24px;
+        flex-wrap: wrap;
+    }
+    
+    .listeparam-thead {
+        display: none;
+    }
+    
+    .listeparam-tbody tr {
+        display: block;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        background: white;
+        padding: 15px;
+    }
+    
+    .listeparam-tbody td {
+        display: block;
+        text-align: right;
+        padding: 10px;
+        border-bottom: 1px solid #ffd9e2;
+    }
+    
+    .listeparam-tbody td:last-child {
+        border-bottom: none;
+    }
+    
+    .listeparam-tbody td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 600;
+        color: #b85e7a;
+    }
+    
+    .listeparam-action-button {
+        margin: 5px;
+    }
+}
+
+/* Pétales décoratifs */
+.listeparam-petale {
+    position: fixed;
+    pointer-events: none;
+    font-size: 20px;
+    animation: flotte 8s linear infinite;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+@keyframes flotte {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+    }
+    20% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(180deg);
+    }
+}
